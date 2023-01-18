@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Kombucha calculator</h1>
+
+<p>Free kombucha tool</p>
+
+</body>
+</html>
