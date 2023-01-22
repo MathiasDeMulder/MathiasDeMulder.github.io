@@ -28,7 +28,7 @@
         cursor: pointer;
         border-radius: 5px;
         transition-duration: 0.4s;
-        width: 50%;
+        width: 40%;
       }
 
       .buttonDisabled {
@@ -44,7 +44,28 @@
         cursor: default;
         border-radius: 5px;
         transition-duration: 0.4s;
-        width: 50%;
+        width: 40%;
+      }
+
+      .buttonReset {
+        background-color: rgba(249, 64, 27, 1);
+        border: 2px solid rgb(135, 26, 4);
+        color: black;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition-duration: 0.4s;
+        width: 40%;
+      }
+
+      .buttonReset:hover {
+        background-color: rgb(228, 87, 58);
+        color: black;
       }
 
       .buttonRegular:hover {
@@ -65,7 +86,7 @@
         cursor: pointer;
         border-radius: 5px;
         transition-duration: 0.4s;
-        width: 91%;
+        width: 40%;
       }
 
       .buttonAction:hover {
@@ -117,9 +138,9 @@
         Starter liquid (liter)
       </button>
       <input type="number" id="inStarter" placeholder="0.075" disabled /><br />
+      <button class="buttonReset" id="reset">reset</button>
 
       <button class="buttonAction" id="btnStarter">CALCULATE</button>
-      <input type="reset" />
 
       <br /><br />
 
@@ -128,26 +149,45 @@
 
     <script>
       //select calculation method.
-
       let selector = 1;
 
       document.getElementById("Selection_0").onclick = function () {
         document.getElementById("inKombucha").removeAttribute("disabled");
+        document.getElementById("inKombucha").removeAttribute("placeholder");
+        document.getElementById("inWater").removeAttribute("placeholder");
+        document.getElementById("inTeabags").removeAttribute("placeholder");
+        document.getElementById("inSugar").removeAttribute("placeholder");
+        document.getElementById("inStarter").removeAttribute("placeholder");
         selector = 1;
       };
 
       document.getElementById("Selection_2").onclick = function () {
         document.getElementById("inTeabags").removeAttribute("disabled");
+        document.getElementById("inKombucha").removeAttribute("placeholder");
+        document.getElementById("inWater").removeAttribute("placeholder");
+        document.getElementById("inTeabags").removeAttribute("placeholder");
+        document.getElementById("inSugar").removeAttribute("placeholder");
+        document.getElementById("inStarter").removeAttribute("placeholder");
         selector = 2;
       };
 
       document.getElementById("Selection_3").onclick = function () {
         document.getElementById("inSugar").removeAttribute("disabled");
+        document.getElementById("inKombucha").removeAttribute("placeholder");
+        document.getElementById("inWater").removeAttribute("placeholder");
+        document.getElementById("inTeabags").removeAttribute("placeholder");
+        document.getElementById("inSugar").removeAttribute("placeholder");
+        document.getElementById("inStarter").removeAttribute("placeholder");
         selector = 3;
       };
 
       document.getElementById("Selection_4").onclick = function () {
         document.getElementById("inStarter").removeAttribute("disabled");
+        document.getElementById("inKombucha").removeAttribute("placeholder");
+        document.getElementById("inWater").removeAttribute("placeholder");
+        document.getElementById("inTeabags").removeAttribute("placeholder");
+        document.getElementById("inSugar").removeAttribute("placeholder");
+        document.getElementById("inStarter").removeAttribute("placeholder");
         selector = 4;
       };
 
@@ -214,7 +254,7 @@
         ];
 
         let output =
-          " cool your tea to 35°C before adding your scoby and starter liquid.";
+          "Cool your tea to 35°C before adding your scoby and starter liquid!";
 
         document.getElementById("p1").innerHTML = output;
         document
@@ -233,6 +273,10 @@
           .getElementById("inStarter")
           .setAttribute("value", ingredients[4]);
       }
+
+      document.getElementById("reset").onclick = function () {
+        document.location.reload();
+      };
     </script>
   </body>
 </html>
