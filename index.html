@@ -31,6 +31,22 @@
         width: 50%;
       }
 
+      .buttonDisabled {
+        background-color: rgba(249, 160, 27, 0.292);
+        border: 2px solid rgb(176, 114, 20);
+        color: black;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: default;
+        border-radius: 5px;
+        transition-duration: 0.4s;
+        width: 50%;
+      }
+
       .buttonRegular:hover {
         background-color: rgb(244, 197, 127);
         color: black;
@@ -87,9 +103,11 @@
     <center>
       <h1>Kombucha calculator</h1>
 
-      <button class="buttonRegular" id="Selection_1">Kombucha (liter)</button>
+      <button class="buttonRegular" id="Selection_0">Kombucha (liter)</button>
       <input type="number" id="inKombucha" placeholder="0.375" disabled /><br />
-      <button class="buttonRegular" id="Selection_0">Water (liter)</button>
+      <button class="buttonDisabled" id="Selection_1" disabled>
+        Water (liter)
+      </button>
       <input type="number" id="inWater" placeholder="0.3" disabled /><br />
       <button class="buttonRegular" id="Selection_2">Tea (bags)</button>
       <input type="number" id="inTeabags" placeholder="1" disabled /><br />
@@ -100,8 +118,10 @@
       </button>
       <input type="number" id="inStarter" placeholder="0.075" disabled /><br />
 
-      <button class="buttonAction" id="btnStarter">CALCULATE</button
-      ><br /><br />
+      <button class="buttonAction" id="btnStarter">CALCULATE</button>
+      <input type="reset" />
+
+      <br /><br />
 
       <p id="p1"></p>
     </center>
@@ -111,9 +131,8 @@
 
       let selector = 1;
 
-      document.getElementById("Selection_1").onclick = function () {
+      document.getElementById("Selection_0").onclick = function () {
         document.getElementById("inKombucha").removeAttribute("disabled");
-
         selector = 1;
       };
 
@@ -132,7 +151,7 @@
         selector = 4;
       };
 
-      //pres calculate --> get values and write them into an array
+      //pres calculate
 
       document.getElementById("btnStarter").onclick = function () {
         let V_kom = document.getElementById("inKombucha").value;
@@ -146,6 +165,13 @@
 
         //calculate ingredients();
         calc_K(ingredients, selector);
+
+        //make all input fields white
+        document.getElementById("inKombucha").removeAttribute("disabled");
+        document.getElementById("inWater").removeAttribute("disabled");
+        document.getElementById("inTeabags").removeAttribute("disabled");
+        document.getElementById("inSugar").removeAttribute("disabled");
+        document.getElementById("inStarter").removeAttribute("disabled");
       };
 
       function calc_K(ingredients, selector) {
@@ -188,20 +214,24 @@
         ];
 
         let output =
-          "For " +
-          ingredients[0] +
-          " l kombucha:" +
-          " make " +
-          ingredients[1] +
-          " l tea, with " +
-          ingredients[2] +
-          " teabag(s). Add " +
-          ingredients[3] +
-          " gr of sugar. Let it cool down to 35°C. Then add " +
-          +ingredients[4] +
-          " l starter liquid and your scoby.";
+          " cool your tea to 35°C before adding your scoby and starter liquid.";
 
         document.getElementById("p1").innerHTML = output;
+        document
+          .getElementById("inKombucha")
+          .setAttribute("value", ingredients[0]);
+        document
+          .getElementById("inWater")
+          .setAttribute("value", ingredients[1]);
+        document
+          .getElementById("inTeabags")
+          .setAttribute("value", ingredients[2]);
+        document
+          .getElementById("inSugar")
+          .setAttribute("value", ingredients[3]);
+        document
+          .getElementById("inStarter")
+          .setAttribute("value", ingredients[4]);
       }
     </script>
   </body>
