@@ -10,15 +10,30 @@
     />
     <style>
       body {
-        background-color: rgb(203, 117, 117);
+
+        background-color: rgb(209, 190, 190);
+
         font-family: inter;
         font-size: 15px;
       }
 
+      h1 {
+    font-size: 3em;
+    font-family: 'Montserrat', sans-serif;
+    color: #4CAF50;
+    text-align: center;
+    text-shadow: 2px 2px #333;
+    letter-spacing: 2px;
+}
+
       .buttonRegular {
-        background-color: rgb(249, 161, 27, 0.8);
+        background: linear-gradient(to bottom, rgb(249, 161, 27), rgb(232, 105, 37));
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
         border: 2px solid rgb(176, 114, 20);
-        color: black;
+        color: white;
+        font-weight: bold;
+
         padding: 10px 15px;
         text-align: center;
         text-decoration: none;
@@ -26,76 +41,98 @@
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 20px;
         transition-duration: 0.4s;
-        width: 40%;
+        width: 300px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
       }
 
       .buttonDisabled {
-        background-color: rgba(249, 160, 27, 0.292);
+        background: linear-gradient(to bottom, rgb(66, 64, 63), rgb(102, 100, 99));
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
         border: 2px solid rgb(176, 114, 20);
-        color: black;
+        color: white;
+        font-weight: bold;
+
         padding: 10px 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
-        cursor: default;
-        border-radius: 5px;
+        cursor: pointer;
+        border-radius: 20px;
         transition-duration: 0.4s;
-        width: 40%;
+        width: 300px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
       }
 
       .buttonReset {
-        background-color: rgba(249, 64, 27, 1);
-        border: 2px solid rgb(135, 26, 4);
-        color: black;
-        padding: 15px 32px;
+        background: linear-gradient(to bottom, rgb(249, 64, 27), rgb(159, 41, 17));
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+        border: 2px solid rgb(176, 114, 20);
+        color: white;
+        font-weight: bold;
+
+        padding: 10px 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 20px;
         transition-duration: 0.4s;
-        width: 40%;
+        width: 300px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
       }
 
       .buttonReset:hover {
-        background-color: rgb(228, 87, 58);
-        color: black;
+        color: white;
+        background: linear-gradient(to bottom, rgb(187, 65, 41), rgb(123, 32, 13));
+        cursor: pointer;
       }
 
       .buttonRegular:hover {
-        background-color: rgb(244, 197, 127);
-        color: black;
+        color: white;
+        background: linear-gradient(to bottom, rgb(232, 105, 37), rgb(249, 161, 27));
+        cursor: pointer;
       }
 
       .buttonAction {
-        background-color: rgb(121, 189, 154);
-        border: 2px solid rgb(87, 135, 110);
-        color: black;
-        padding: 15px 32px;
+        background: linear-gradient(to bottom, rgb(121, 189, 154), rgb(87, 135, 110));
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgb(30, 83, 56);
+        color: white;
+        font-weight: bold;
+
+        padding: 10px 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
         margin: 4px 2px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 20px;
         transition-duration: 0.4s;
-        width: 40%;
-      }
+        width: 300px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+        }
 
-      .buttonAction:hover {
-        background-color: rgb(108, 210, 157);
-        color: black;
+        .buttonAction:hover {
+        color: white;
+        background: linear-gradient(to bottom, rgb(88, 197, 140), rgb(66, 138, 101));
+        cursor: pointer;
       }
 
       input {
-        width: 40%;
+        width: 300px;
       }
 
       input[type="number"],
@@ -149,6 +186,7 @@
 
     <script>
       //select calculation method.
+
       let selector = 1;
 
       document.getElementById("Selection_0").onclick = function () {
@@ -277,6 +315,53 @@
       document.getElementById("reset").onclick = function () {
         document.location.reload();
       };
+
+
+
+      function disableInput(Trigger, Input) {
+        // Get a reference to the button and input elements
+        var button = document.getElementById(Trigger);
+        var input = document.getElementById(Input);
+
+        // Add a click event listener to the button
+        button.addEventListener("click", function () {
+          // Disable the input when the button is clicked
+          input.disabled = true;
+        });
+      }
+
+
+      disableInput("Selection_0", "inWater");
+      disableInput("Selection_0", "inTeabags");
+      disableInput("Selection_0", "inSugar");
+      disableInput("Selection_0", "inStarter");
+
+      disableInput("Selection_1", "inKombucha");
+      disableInput("Selection_1", "inTeabags");
+      disableInput("Selection_1", "inSugar");
+      disableInput("Selection_1", "inStarter");
+
+      disableInput("Selection_2", "inKombucha");
+      disableInput("Selection_2", "inWater");
+      disableInput("Selection_2", "inSugar");
+      disableInput("Selection_2", "inStarter");
+
+      disableInput("Selection_3", "inKombucha");
+      disableInput("Selection_3", "inWater");
+      disableInput("Selection_3", "inTeabags");
+      disableInput("Selection_3", "inStarter");
+
+      disableInput("Selection_4", "inKombucha");
+      disableInput("Selection_4", "inWater");
+      disableInput("Selection_4", "inTeabags");
+      disableInput("Selection_4", "inSugar");
+
+    </script>
+
+
+
+
+
     </script>
   </body>
 </html>
