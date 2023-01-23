@@ -39,11 +39,12 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
+        margin: 4px 10px;
         cursor: pointer;
         border-radius: 20px;
         transition-duration: 0.4s;
-        width: 300px;
+        width: 250px;
+        height: 40px;
         text-transform: uppercase;
         transition: background 0.3s ease;
       }
@@ -61,11 +62,11 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
+        margin: 4px 10px;
+        cursor: default;
         border-radius: 20px;
         transition-duration: 0.4s;
-        width: 300px;
+        width: 250px;
         text-transform: uppercase;
         transition: background 0.3s ease;
       }
@@ -87,9 +88,10 @@
         cursor: pointer;
         border-radius: 20px;
         transition-duration: 0.4s;
-        width: 300px;
+        width: 205px;
         text-transform: uppercase;
         transition: background 0.3s ease;
+
       }
 
       .buttonReset:hover {
@@ -120,7 +122,7 @@
         cursor: pointer;
         border-radius: 20px;
         transition-duration: 0.4s;
-        width: 300px;
+        width: 205px;
         text-transform: uppercase;
         transition: background 0.3s ease;
         }
@@ -131,13 +133,10 @@
         cursor: pointer;
       }
 
-      input {
-        width: 300px;
-      }
-
       input[type="number"],
       select {
-        width: 40%;
+        width: 100px;
+        height: 40px;
         padding: 10px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -153,6 +152,12 @@
         border-radius: 40px;
         object-fit: cover;
       }
+
+      label{
+        font-size: 17px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif, Helvetica, sans-serif;
+        margin: 8px;
+        }
     </style>
 
     <title>Kombucha Calculator</title>
@@ -161,20 +166,20 @@
     <center>
       <h1>Kombucha calculator</h1>
 
-      <button class="buttonRegular" id="Selection_0">Kombucha (liter)</button>
-      <input type="number" id="inKombucha" placeholder="0.375" disabled /><br />
+      <button class="buttonRegular" id="Selection_0">Kombucha</button>
+      <input type="number" id="inKombucha" placeholder="0.375" disabled /><label> liter</label><br />
       <button class="buttonDisabled" id="Selection_1" disabled>
-        Water (liter)
+        Water
       </button>
-      <input type="number" id="inWater" placeholder="0.3" disabled /><br />
-      <button class="buttonRegular" id="Selection_2">Tea (bags)</button>
-      <input type="number" id="inTeabags" placeholder="1" disabled /><br />
-      <button class="buttonRegular" id="Selection_3">Sugar (gram)</button>
-      <input type="number" id="inSugar" placeholder="25" disabled /><br />
+      <input type="number" id="inWater" placeholder="0.3" disabled /><label> liter</label><br>
+      <button class="buttonRegular" id="Selection_2">Tea</button>
+      <input type="number" id="inTeabags" placeholder="1" disabled /><label> bags</label><br />
+      <button class="buttonRegular" id="Selection_3">Sugar</button>
+      <input type="number" id="inSugar" placeholder="25" disabled /><label> gram</label><br />
       <button class="buttonRegular" id="Selection_4">
-        Starter liquid (liter)
+        Starter
       </button>
-      <input type="number" id="inStarter" placeholder="0.075" disabled /><br />
+      <input type="number" id="inStarter" placeholder="0.075" disabled /> <label> liter</label><br />
       <button class="buttonReset" id="reset">reset</button>
 
       <button class="buttonAction" id="btnStarter">CALCULATE</button>
@@ -256,30 +261,30 @@
         if (selector === 1) {
           //based on total
           V_kom = ingredients[0];
-          V_wat = (V_kom / 0.375) * 0.3;
-          Q_tea = (V_kom / 0.375) * 1;
-          M_sug = (V_kom / 0.375) * 25;
-          V_sta = (V_kom / 0.375) * 0.075;
+          V_sta = Math.round((V_kom / 5)*1000)/1000;
+          V_wat = Math.round((V_kom-V_sta)*1000)/1000;
+          Q_tea = (V_kom / 15) * 40;
+          M_sug = Math.round((V_kom / 15) * 1000);
         } else if (selector === 2) {
           //based on teabags
           Q_tea = ingredients[2];
-          M_sug = (Q_tea / 1) * 25;
-          V_sta = (Q_tea / 1) * 0.075;
-          V_kom = (Q_tea / 1) * 0.375;
-          V_wat = (Q_tea / 1) * 0.3;
+          V_kom = Math.round((Q_tea / 1 * 0.375)*1000)/1000;
+          V_sta = Math.round((V_kom / 5)*1000)/1000;
+          V_wat = Math.round((V_kom-V_sta)*1000)/1000;
+          M_sug = Math.round((V_kom / 15) * 1000);
         } else if (selector === 3) {
           //based on sugar
           M_sug = ingredients[3];
-          V_sta = (M_sug / 25) * 0.075;
-          V_kom = (M_sug / 25) * 0.375;
-          V_wat = (M_sug / 25) * 0.3;
-          Q_tea = (M_sug / 25) * 1;
+          V_kom = Math.round(M_sug / 1000 * 15 *1000)/1000 
+          V_sta = Math.round(V_kom / 5*1000)/1000;
+          V_wat = Math.round((V_kom-V_sta)*1000)/1000;
+          Q_tea = (V_kom / 15) * 40;
         } else if (selector === 4) {
           V_sta = ingredients[4];
-          V_kom = (V_sta / 0.075) * 0.375;
-          V_wat = (V_sta / 0.075) * 0.3;
-          Q_tea = (V_sta / 0.075) * 1;
-          M_sug = (V_sta / 0.075) * 25;
+          V_kom = Math.round((V_sta / 3) * 15*1000)/1000;
+          V_wat = Math.round((V_kom - V_sta)*1000)/1000;
+          Q_tea = (V_kom / 15) * 40;
+          M_sug = Math.round((V_kom / 15) * 1000);
         } else {
         }
 
